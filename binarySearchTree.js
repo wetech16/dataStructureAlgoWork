@@ -1,6 +1,4 @@
-const util = require("util");
-
-function main() {
+(function main() {
   class Node {
     constructor(data, left = null, right = null) {
       this.data = data;
@@ -8,113 +6,180 @@ function main() {
       this.right = right;
     }
   }
-  // class BST {
-  //   insert(root, data) {
-  //     if (root === null) {
-  //       root = new Node(data);
-  //     } else if (data <= root.data) {
-  //       root.left = this.insert(root.left, data);
-  //     } else {
-  //       root.right = this.insert(root.right, data);
-  //     }
-  //     return root;
-  //   }
-  // }
-  // let root = null;
-  // let bst = new BST();
-  // root = bst.insert(root, 100);
-  // root = bst.insert(root, 200);
-  // root = bst.insert(root, 300);
-  // root = bst.insert(root, 190);
-  // root = bst.insert(root, 90);
-  // root = bst.insert(root, 80);
-  // console.log(root);
-
+  class Queue {
+    constructor() {
+      this.data = [];
+    }
+    push(data) {
+      this.data.push(data);
+    }
+    pop() {
+      this.data.shift();
+    }
+    isEmpty() {
+      return this.data.length == 0;
+    }
+    front() {
+      return this.data[0];
+    }
+  }
   class BST {
     constructor() {
       this.root = null;
     }
-
-    // insert(data) {
-    //   this.root = add(this.root, data);
-    //   function add(root, data) {
-    //     if (root == null) {
-    //       root = new Node(data);
-    //     } else if (data <= root.data) {
-    //       root.left = add(root.left, data);
-    //     } else {
-    //       root.right = add(root.right, data);
-    //     }
-    //     return root;
-    //   }
-    // }
-
     insert(data) {
-      this.root = insertRoot(this.root, data);
-      function insertRoot(root, data) {
+      this.root = sub(this.root, data);
+      function sub(root, data) {
         if (root == null) {
           root = new Node(data);
-        } else if (root.data < data) {
-          root.right = insertRoot(root.right, data);
-        } else {
-          root.left = insertRoot(root.left, data);
-        }
+        } else if (data <= root.data) {
+          root.left = sub(root.left, data);
+        } else root.right = sub(root.right, data);
         return root;
       }
     }
-
-    find(data) {
-      return findRoot(this.root, data);
-      function findRoot(root, data) {
-        if (root == null) return false;
-        else if (root.data == data) return true;
-        else if (data <= root.data) return findRoot(root.left, data);
-        else return findRoot(root.right, data);
+    finMin() {
+      return sub(this.root);
+      function sub(root) {
+        if (root == null) {
+          return -1;
+        } else if (root.left == null) {
+          return root.data;
+        }
+        return sub(root.left);
       }
     }
-    findMin() {
-      let tempRoot = this.root;
-      return subFindMin(tempRoot);
-      function subFindMin(root) {
-        if (root == null) return -1;
-        if (root.left == null) return root.data;
-        return subFindMin(root.left);
-      }
-    }
-    findMax() {
-      let tempRoot = this.root;
-      return (function subFindMax(root) {
+    finMax() {
+      return sub(this.root);
+      function sub(root) {
         if (root == null) return -1;
         if (root.right == null) return root.data;
-        return subFindMax(root.right);
-      })(tempRoot);
+        return sub(root.right);
+      }
     }
     findHeight() {
-      let tempRoot = this.root;
-      return (function subHeight(root) {
+      return sub(this.root);
+      function sub(root) {
         if (root == null) return -1;
-        let leftMax = subHeight(root.left);
-        let rightMax = subHeight(root.right);
-        return Math.max(leftMax, rightMax) + 1;
-      })(tempRoot);
+        let leftHeight = sub(root.left);
+        let rightHeight = sub(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+      }
+    }
+    levelOrder() {
+      sub(this.root);
+      function sub(root) {
+        if (root == null) return;
+        let q = new Queue();
+        q.push(root);
+        while (!q.isEmpty()) {
+          let current = q.front();
+          console.log(current.data);
+          if (current.left != null) q.push(current.left);
+          if (current.right != null) q.push(current.right);
+          q.pop();
+        }
+      }
+    }
+    preOrder() {
+      sub(this.root);
+      function sub(root) {
+        if (root == null) return;
+        console.log(root.data);
+        sub(root.left);
+        sub(root.right);
+      }
+    }
+    inOrder() {
+      sub(this.root);
+      function sub(root) {
+        if (root == null) return;
+        sub(root.left);
+        console.log(root.data);
+        sub(root.right);
+      }
+    }
+    postOrder() {
+      sub(this.root);
+      function sub(root) {
+        if (root == null) return;
+        sub(root.left);
+        sub(root.right);
+        console.log(root.data);
+      }
+    }
+    isBinaryTreeNaive() {
+      return sub(this.root);
+      function sub(root) {
+        if (root == null) return true;
+        if (
+          isSubtreeLesser(root.left, root.data) &&
+          isSubtreeGreater(root.right, root.data) &&
+          sub(root.left) &&
+          sub(root.right)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function isSubtreeLesser(root, data) {
+        if (root == null) return true;
+        if (
+          root.data <= data &&
+          isSubtreeLesser(root.left, data) &&
+          isSubtreeLesser(root.right, data)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function isSubtreeGreater(root, data) {
+        if (root == null) return true;
+        if (
+          root.data > data &&
+          isSubtreeGreater(root.left, data) &&
+          isSubtreeGreater(root.right, data)
+        )
+          return true;
+        else return false;
+      }
+    }
+    isBinaryTreeBoundry() {
+      return sub(
+        this.root,
+        Number.NEGATIVE_INFINITY,
+        Number.POSITIVE_INFINITY
+      );
+      function sub(root, min, max) {
+        if (root == null) return true;
+        if (
+          root.data > min &&
+          root.data < max &&
+          sub(root.left, min, root.data) &&
+          sub(root.right, root.data, max)
+        )
+          return true;
+        else return false;
+      }
     }
   }
-
-  let bst = new BST();
+  const bst = new BST();
   bst.insert(100);
-  bst.insert(80);
   bst.insert(200);
-  // bst.insert(300);
-  // bst.insert(400);
-  // bst.insert(500);
-  // bst.insert(90);
-  // bst.insert(80);
-  console.dir(util.inspect(bst.root, true, 10));
-  console.log(bst.find(200));
-  console.log(bst.findMin());
-  console.log(bst.findMax());
-  console.log(bst.findHeight());
-  // console.dir(JSON.stringify(bst.root));
-}
-
-main();
+  bst.insert(190);
+  bst.insert(300);
+  bst.insert(80);
+  bst.insert(90);
+  bst.insert(95);
+  console.log(bst.root);
+  //   console.log(bst.finMax());
+  //   console.log(bst.findHeight());
+  // console.log(bst.levelOrder());
+  // bst.preOrder();
+  // bst.inOrder();
+  // bst.postOrder();
+  // console.log(bst.isBinaryTreeNaive());
+  console.log(bst.isBinaryTreeBoundry());
+})();

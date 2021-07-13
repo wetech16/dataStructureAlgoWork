@@ -9,6 +9,7 @@ function main(n) {
     }
     return total == n;
   }
+  for (let i = 1; i <= n; i++) {
     if (isPowerTwo(i)) console.log("POWER");
     else console.log(i);
   }

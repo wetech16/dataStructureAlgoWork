@@ -14,23 +14,29 @@ function mergeSort(a) {
         arr[k] = leftArr[i];
         i++;
         k++;
+        console.log(arr);
       } else {
         arr[k] = rightArr[j];
         j++;
         k++;
+
+        console.log(arr);
       }
     }
     while (i < nl) {
       arr[k] = leftArr[i];
       i++;
       k++;
+      console.log(arr);
     }
     while (j < nr) {
       arr[k] = rightArr[j];
       j++;
       k++;
+      console.log(arr);
     }
   }
+  console.log(a);
   let n = a.length;
   if (n < 2) return;
   let mid = Math.floor(n / 2);

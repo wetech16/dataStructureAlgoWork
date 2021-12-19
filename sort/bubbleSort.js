@@ -22,6 +22,7 @@ console.log(a);
 
 function sortArray(a) {
   for (let i = 0; i < a.length; i++) {
+    // a.length -1 also works
     for (let k = 0; k < a.length - 1 - i; k++) {
       if (a[k] > a[k + 1]) {
         let temp = a[k];

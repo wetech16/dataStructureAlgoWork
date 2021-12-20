@@ -1,28 +1,22 @@
-function partition(a, start, end) {
-  function swap(indexA, indexB) {
-    let temp = a[indexA];
-    a[indexA] = a[indexB];
-    a[indexB] = temp;
-  }
-
-  let pivot = a[end];
-  let partitionIndex = start;
-  for (let i = start; i < end; i++) {
-    if (a[i] <= pivot) {
-      swap(i, partitionIndex);
-      partitionIndex++;
-    }
-  }
-  swap(partitionIndex, end);
-  return partitionIndex;
-}
-
 function randomPartition(a, start, end) {
   function swap(indexA, indexB) {
     let temp = a[indexA];
     a[indexA] = a[indexB];
     a[indexB] = temp;
   }
+  function partition(a, start, end) {
+    let pivot = a[end];
+    let partitionIndex = start;
+    for (let i = start; i < end; i++) {
+      if (a[i] <= pivot) {
+        swap(i, partitionIndex);
+        partitionIndex++;
+      }
+    }
+    swap(partitionIndex, end);
+    return partitionIndex;
+  }
+
   let random = Math.floor(Math.random() * (end - start) + start);
   swap(random, end);
   return partition(a, start, end);
@@ -36,7 +30,7 @@ function quickSort(a, start, end) {
   }
 }
 
-let a = [7, 7, 3, 4, 1, 5, 6, 2, 7];
+let a = [7, 3, 3, 4, 1, 5, 6, 2, 7];
 quickSort(a, 0, a.length - 1);
 console.log(a);
 

@@ -25,4 +25,36 @@ function swapTwoElements(indexA, indexB, arr) {
   console.log(arr);
 }
 
+function insertionSort(a) {
+  for (let i = 0; i < a.length; i++) {
+    let index = i;
+    let value = a[i];
+
+    while (index > 0 && a[index - 1] > value) {
+      a[index] = a[index - 1];
+      index--;
+    }
+    a[index] = value;
+  }
+}
+
+function partition(a, start, end) {
+  function swap(indexA, indexB) {
+    let temp = a[indexA];
+    a[indexA] = a[indexB];
+    a[indexB] = temp;
+  }
+
+  let pivot = a[end];
+  let partitionIndex = start;
+  for (let i = start; i < end; i++) {
+    if (a[i] <= pivot) {
+      swap(i, partitionIndex);
+      partitionIndex++;
+    }
+  }
+  swap(partitionIndex, end);
+  return partitionIndex;
+}
+
 swapTwoElements(0, 1, [1, 2]);

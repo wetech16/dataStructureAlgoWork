@@ -1,5 +1,3 @@
-// Method 1
-
 // var items = [3, 4, 1, 5, 6, 2, 7];
 // function swap(items, leftIndex, rightIndex) {
 //   var temp = items[leftIndex];

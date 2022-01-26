@@ -44,33 +44,64 @@
 // console.log(sortedArray); //prints [2,3,5,6,7,9]
 
 // Method 2
-function quickSort(a, start, end) {
+// function quickSort(a, start, end) {
+//   if (start < end) {
+//     let pIndex = partition(a, start, end);
+//     quickSort(a, start, pIndex - 1);
+//     quickSort(a, pIndex + 1, end);
+//   }
+// }
+
+// function partition(a, start, end) {
+//   let random = Math.floor(Math.random() * (end - start) + start);
+//   swap(random, end);
+//   let pivot = a[end];
+//   let pIndex = start;
+//   for (let i = start; i < end; i++) {
+//     if (a[i] <= pivot) {
+//       swap(i, pIndex);
+//       pIndex++;
+//     }
+//   }
+//   swap(pIndex, end);
+//   return pIndex;
+//   function swap(indexA, indexB) {
+//     let temp = a[indexA];
+//     a[indexA] = a[indexB];
+//     a[indexB] = temp;
+//   }
+// }
+// let a = [7, 7, 3, 4, 1, 5, 6, 2, 7];
+// quickSort(a, 0, a.length - 1);
+// console.log(a);
+
+let a = [7, 7, 3, 4, 1, 5, 6, 2, 7];
+quickSort(a, 0, a.length - 1);
+console.log(a);
+
+function quickSort(arr, start, end) {
   if (start < end) {
-    let pIndex = partition(a, start, end);
-    quickSort(a, start, pIndex - 1);
-    quickSort(a, pIndex + 1, end);
+    let pIndex = partition(arr, start, end);
+    quickSort(arr, start, pIndex - 1);
+    quickSort(arr, pIndex + 1, end);
   }
 }
-
-function partition(a, start, end) {
+function partition(arr, start, end) {
   let random = Math.floor(Math.random() * (end - start) + start);
   swap(random, end);
-  let pivot = a[end];
   let pIndex = start;
-  for (let i = start; i < end; i++) {
-    if (a[i] <= pivot) {
+  let pivot = arr[end];
+  for (let i = start; i < arr.length; i++) {
+    if (arr[i] <= pivot) {
       swap(i, pIndex);
       pIndex++;
     }
   }
   swap(pIndex, end);
   return pIndex;
-  function swap(indexA, indexB) {
-    let temp = a[indexA];
-    a[indexA] = a[indexB];
-    a[indexB] = temp;
+  function swap(aItem, bItem) {
+    let temp = arr[aItem];
+    arr[aItem] = arr[bItem];
+    arr[bItem] = temp;
   }
 }
-let a = [7, 7, 3, 4, 1, 5, 6, 2, 7];
-quickSort(a, 0, a.length - 1);
-console.log(a);

@@ -13,15 +13,14 @@ let a = [5, 4, 2, 1, 3];
 sortArray(a);
 console.log(a);
 
-function sortArray(a) {
-  for (let i = 1; i < a.length; i++) {
+function sortArray(arr) {
+  for (let i = 1; i < arr.length; i++) {
     let index = i;
-    let value = a[i];
-
-    while (index > 0 && a[index - 1] > value) {
-      a[index] = a[index - 1];
+    let value = arr[index];
+    while (index > 0 && arr[index - 1] > value) {
+      arr[index] = arr[index - 1];
       index--;
     }
-    a[index] = value;
+    arr[index] = value;
   }
 }

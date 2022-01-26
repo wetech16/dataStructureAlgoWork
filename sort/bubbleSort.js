@@ -15,13 +15,13 @@ let a = [1, 43, 2, 5, 3, 1];
 sortArray(a);
 console.log(a);
 
-function sortArray(a) {
-  for (let i = 0; i < a.length; i++) {
-    for (let j = 0; j < a.length - 1; j++) {
-      if (a[j] > a[j + 1]) {
-        let temp = a[j];
-        a[j] = a[j + 1];
-        a[j + 1] = temp;
+function sortArray(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
     }
   }

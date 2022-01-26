@@ -57,22 +57,23 @@ let a = [2, 4, 1, 3, 5];
 mergeSort(a);
 console.log(a);
 
-function mergeSort(a) {
+function mergeSort(arr) {
+  let n = arr.length;
+  if (n < 2) return;
   let left = [];
   let right = [];
-  let n = a.length;
-  if (n < 2) return;
   let mid = Math.floor(n / 2);
   for (let i = 0; i < mid; i++) {
-    left[i] = a[i];
+    left[i] = arr[i];
   }
   for (let i = mid; i < n; i++) {
-    right[i - mid] = a[i];
+    right[i - mid] = arr[i];
   }
   mergeSort(left);
   mergeSort(right);
-  merge(a, left, right);
-  function merge(arr, leftArr, rightArr) {
+  merge(left, right, arr);
+
+  function merge(leftArr, rightArr, a) {
     let i = 0,
       j = 0,
       k = 0;
@@ -80,24 +81,24 @@ function mergeSort(a) {
     let nr = rightArr.length;
     while (i < nl && j < nr) {
       if (leftArr[i] < rightArr[j]) {
-        arr[k] = leftArr[i];
-        k++;
+        a[k] = leftArr[i];
         i++;
-      } else {
-        arr[k] = rightArr[j];
         k++;
+      } else {
+        a[k] = rightArr[j];
         j++;
+        k++;
       }
     }
     while (i < nl) {
-      arr[k] = leftArr[i];
-      k++;
+      a[k] = leftArr[i];
       i++;
+      k++;
     }
     while (j < nr) {
-      arr[k] = rightArr[j];
-      k++;
+      a[k] = rightArr[j];
       j++;
+      k++;
     }
   }
 }

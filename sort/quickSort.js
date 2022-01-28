@@ -91,7 +91,7 @@ function partition(arr, start, end) {
   swap(random, end);
   let pIndex = start;
   let pivot = arr[end];
-  for (let i = start; i < arr.length; i++) {
+  for (let i = start; i < end; i++) {
     if (arr[i] <= pivot) {
       swap(i, pIndex);
       pIndex++;

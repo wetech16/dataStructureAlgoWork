@@ -57,12 +57,41 @@ let a = [2, 4, 1, 3, 5];
 mergeSort(a);
 console.log(a);
 
+function merge(left, right, arr) {
+  let ln = left.length;
+  let rn = right.length;
+  let i = 0;
+  j = 0;
+  k = 0;
+  while (i < ln && j < rn) {
+    if (left[i] < right[j]) {
+      arr[k] = left[i];
+      i++;
+      k++;
+    } else {
+      arr[k] = right[j];
+      j++;
+      k++;
+    }
+  }
+  while (i < ln) {
+    arr[k] = left[i];
+    i++;
+    k++;
+  }
+  while (j < rn) {
+    arr[k] = right[j];
+    j++;
+    k++;
+  }
+}
+
 function mergeSort(arr) {
   let n = arr.length;
   if (n < 2) return;
+  let mid = Math.floor(n / 2);
   let left = [];
   let right = [];
-  let mid = Math.floor(n / 2);
   for (let i = 0; i < mid; i++) {
     left[i] = arr[i];
   }
@@ -72,33 +101,4 @@ function mergeSort(arr) {
   mergeSort(left);
   mergeSort(right);
   merge(left, right, arr);
-
-  function merge(leftArr, rightArr, a) {
-    let i = 0,
-      j = 0,
-      k = 0;
-    let nl = leftArr.length;
-    let nr = rightArr.length;
-    while (i < nl && j < nr) {
-      if (leftArr[i] < rightArr[j]) {
-        a[k] = leftArr[i];
-        i++;
-        k++;
-      } else {
-        a[k] = rightArr[j];
-        j++;
-        k++;
-      }
-    }
-    while (i < nl) {
-      a[k] = leftArr[i];
-      i++;
-      k++;
-    }
-    while (j < nr) {
-      a[k] = rightArr[j];
-      j++;
-      k++;
-    }
-  }
 }

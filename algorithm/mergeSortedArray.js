@@ -7,7 +7,6 @@ function merge(nums1, m, nums2, n) {
       nums1[indexMerge--] = nums1[index1--];
     } else {
       nums1[indexMerge--] = nums2[index2--];
-      console.log(index2);
     }
   }
 }

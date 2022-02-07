@@ -23,11 +23,8 @@ function sortArray(arr) {
         min = j;
       }
     }
-    swap(min, i);
-  }
-  function swap(a, b) {
-    let temp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = temp;
+    let temp = arr[min];
+    arr[min] = arr[i];
+    arr[i] = temp;
   }
 }

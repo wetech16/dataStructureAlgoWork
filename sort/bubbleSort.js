@@ -11,15 +11,18 @@
 //     }
 //   }
 
-let a = [1, 43, 2, 5, 3, 1];
-sortArray(a);
+let a = [4, 2, 1, 3];
 console.log(a);
+sortArray(a);
+console.log("sorted", a);
 
 function sortArray(arr) {
   for (let j = 0; j < arr.length; j++) {
+    console.log(j);
     for (let i = 0; i < arr.length - 1; i++) {
       if (arr[i] > arr[i + 1]) {
         swap(i, i + 1);
+        console.log(arr);
       }
     }
   }

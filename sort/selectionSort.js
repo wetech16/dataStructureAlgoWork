@@ -17,14 +17,14 @@ console.log(a);
 
 function sortArray(arr) {
   for (let i = 0; i < arr.length; i++) {
-    let min = i;
+    let pMin = i;
     for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[min]) {
-        min = j;
+      if (arr[j] < arr[pMin]) {
+        pMin = j;
       }
     }
-    let temp = arr[min];
-    arr[min] = arr[i];
+    let temp = arr[pMin];
+    arr[pMin] = arr[i];
     arr[i] = temp;
   }
 }

@@ -1,26 +1,34 @@
-// function sortArray(arr) {
-//   for (let i = 1; i < arr.length; i++) {
-//     let hole = i;
-//     let value = arr[i];
-//     while (hole > 0 && arr[hole - 1] > value) {
-//       arr[hole] = arr[hole - 1];
-//       hole--;
-//     }
-//     arr[hole] = value;
-//   }
-// }
+/* 
+function sortArray(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    console.log(i);
+    let pIndex = i;
+    let value = arr[pIndex];
+    while (pIndex > 0 && arr[pIndex - 1] > value) {
+      arr[pIndex] = arr[pIndex - 1];
+      pIndex--;
+      console.log(arr);
+    }
+    arr[pIndex] = value;
+    console.log(arr);
+  }
+}
+ */
 let a = [5, 4, 2, 1, 3];
-sortArray(a);
 console.log(a);
+sortArray(a);
 
 function sortArray(arr) {
   for (let i = 1; i < arr.length; i++) {
-    let index = i;
-    let value = arr[index];
-    while (index > 0 && arr[index - 1] > value) {
-      arr[index] = arr[index - 1];
-      index--;
+    console.log(i);
+    let pIndex = i;
+    let value = arr[pIndex];
+    while (pIndex > 0 && arr[pIndex - 1] > value) {
+      arr[pIndex] = arr[pIndex - 1];
+      pIndex--;
+      console.log(arr);
     }
-    arr[index] = value;
+    arr[pIndex] = value;
+    console.log(arr);
   }
 }

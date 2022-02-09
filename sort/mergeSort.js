@@ -54,8 +54,9 @@
 // }
 
 let a = [2, 4, 1, 3, 5];
-mergeSort(a);
 console.log(a);
+mergeSort(a);
+console.log("sorted", a);
 
 function merge(left, right, arr) {
   let ln = left.length;
@@ -98,7 +99,9 @@ function mergeSort(arr) {
   for (let i = mid; i < n; i++) {
     right[i - mid] = arr[i];
   }
+
   mergeSort(left);
   mergeSort(right);
   merge(left, right, arr);
+  console.log(arr);
 }

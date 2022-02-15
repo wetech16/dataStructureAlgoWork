@@ -53,8 +53,36 @@
 //   merge(left, right, a);
 // }
 
-let a = [2, 4, 1, 3, 5];
-console.log(a);
+/* 
+Two Sorted Array in a logic merge of compared arr1 and arr2
+
+part 1
+a logic merge of compared arr1 and arr2:
+main [ 5, 4 ] [ 1, 3, 2 ] [ 5, 4, 1, 3, 2 ]
+[ 5, 4 ] [ 1, 3, 2 ] [ 1, 3, 2, 5, 4 ]
+sorted [ 1, 3, 2, 5, 4 ]
+
+part 2
+Sort each array by recursioning 
+  let mid = Math.floor(n / 2);
+  let left = [];
+  let right = [];
+  for (let i = 0; i < mid; i++) {
+    left[i] = arr[i];
+  }
+  for (let i = mid; i < n; i++) {
+    right[i - mid] = arr[i];
+  }
+  console.log("main", left, right, arr);
+  mergeSort(left);
+  mergeSort(right);
+  merge(left, right, arr);
+
+
+
+
+*/
+let a = [5, 4, 1, 3, 2];
 mergeSort(a);
 console.log("sorted", a);
 
@@ -85,11 +113,12 @@ function merge(left, right, arr) {
     j++;
     k++;
   }
+  console.log(left, right, arr);
 }
 
 function mergeSort(arr) {
   let n = arr.length;
-  if (n < 2) return;
+  if (n == 1) return;
   let mid = Math.floor(n / 2);
   let left = [];
   let right = [];
@@ -99,9 +128,8 @@ function mergeSort(arr) {
   for (let i = mid; i < n; i++) {
     right[i - mid] = arr[i];
   }
-
+  console.log("main", left, right, arr);
   mergeSort(left);
   mergeSort(right);
   merge(left, right, arr);
-  console.log(arr);
 }

@@ -77,3 +77,39 @@ function partition(a, start, end) {
 // }
 
 swapTwoElements(0, 1, [1, 2]);
+
+/* 
+a logic merge of compared arr1 and arr2:
+main [ 5, 4 ] [ 1, 3, 2 ] [ 5, 4, 1, 3, 2 ]
+[ 5, 4 ] [ 1, 3, 2 ] [ 1, 3, 2, 5, 4 ]
+sorted [ 1, 3, 2, 5, 4 ]
+ */
+function merge(left, right, arr) {
+  let ln = left.length;
+  let rn = right.length;
+  let i = 0;
+  j = 0;
+  k = 0;
+  while (i < ln && j < rn) {
+    if (left[i] < right[j]) {
+      arr[k] = left[i];
+      i++;
+      k++;
+    } else {
+      arr[k] = right[j];
+      j++;
+      k++;
+    }
+  }
+  while (i < ln) {
+    arr[k] = left[i];
+    i++;
+    k++;
+  }
+  while (j < rn) {
+    arr[k] = right[j];
+    j++;
+    k++;
+  }
+  console.log(left, right, arr);
+}

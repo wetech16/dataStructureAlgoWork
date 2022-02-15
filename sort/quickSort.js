@@ -77,43 +77,44 @@
 
 let a = [4, 3, 1, 2];
 quickSort(a, 0, a.length - 1);
+console.log(a);
 
-function quickSort(arr, start, end) {
-  if (start < end) {
-    let pIndex = partition(arr, start, end);
-    quickSort(arr, start, pIndex - 1);
-    quickSort(arr, pIndex + 1, end);
-  }
-}
-function partition(arr, start, end) {
-  let random = Math.floor(Math.random() * (end - start) + start);
-  console.log(arr, "main", "start", start, "end", end);
-  swap(random, end);
-  let pIndex = start;
-  let pivot = arr[end];
-  console.log(arr, "random 2 index swap");
-  for (let i = start; i < end; i++) {
-    if (arr[i] <= pivot) {
-      swap(i, pIndex);
-      console.log(
-        arr,
-        "i",
-        i,
-        "pIndex",
-        pIndex,
-        "arr[i]<arr[end] i-pIndex swap",
-        "pIndex+1"
-      );
-      pIndex++;
-    }
-  }
-  swap(pIndex, end);
-  console.log(arr, "pIndex-end swap");
-  console.log("");
-  return pIndex;
-  function swap(aItem, bItem) {
-    let temp = arr[aItem];
-    arr[aItem] = arr[bItem];
-    arr[bItem] = temp;
-  }
-}
+// function quickSort(arr, start, end) {
+//   if (start < end) {
+//     let pIndex = partition(arr, start, end);
+//     quickSort(arr, start, pIndex - 1);
+//     quickSort(arr, pIndex + 1, end);
+//   }
+// }
+// function partition(arr, start, end) {
+//   let random = Math.floor(Math.random() * (end - start) + start);
+//   console.log(arr, "main", "start", start, "end", end);
+//   swap(random, end);
+//   let pIndex = start;
+//   let value = arr[end];
+//   console.log(arr, "random 2 index swap");
+//   for (let i = start; i < end; i++) {
+//     if (arr[i] <= value) {
+//       swap(i, pIndex);
+//       console.log(
+//         arr,
+//         "i",
+//         i,
+//         "pIndex",
+//         pIndex,
+//         "arr[i]<arr[end] i-pIndex swap",
+//         "pIndex+1"
+//       );
+//       pIndex++;
+//     }
+//   }
+//   swap(pIndex, end);
+//   console.log(arr, "pIndex-end swap");
+//   console.log("");
+//   return pIndex;
+//   function swap(aItem, bItem) {
+//     let temp = arr[aItem];
+//     arr[aItem] = arr[bItem];
+//     arr[bItem] = temp;
+//   }
+// }

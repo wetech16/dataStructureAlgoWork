@@ -15,6 +15,7 @@ class Stack {
       return undefined;
     }
     this.top--;
+    let temp = this
     return this.items[++this.top];
   }
   peek() {
@@ -22,9 +23,9 @@ class Stack {
     return this.items[this.top];
   }
   isEmpty() {
-    console.log(
-      this.top == -1 ? "Stack is empty" : "Stack is not empty"
-    );
+    // console.log(
+    //   this.top == -1 ? "Stack is empty" : "Stack is not empty"
+    // );
     return this.top == -1;
   }
   size() {
@@ -54,6 +55,7 @@ stack.isEmpty();
 stack.size();
 stack.print();
 console.log(stack.pop());
+stack.print();
 stack.clear();
 stack.size();
 stack.print();
@@ -61,3 +63,28 @@ stack.pop();
 stack.push(100);
 stack.print();
 stack.size();
+
+// class Stack {
+//   constructor() {
+//     this.item = [];
+//     this.top = -1;
+//   }
+
+//   push(n) {
+//     this.top++;
+//     this.item[this.top] = n;
+//     console.log(this.item[this.top], "is added");
+//   }
+//   pop() {
+//     if (this.top == -1) return console.log("it's empty");
+//     this.top--;
+//     return this.item[++this.top];
+//   }
+// }
+
+// let stack = new Stack();
+// console.log(stack.top);
+// stack.push(1);
+// console.log(stack.top);
+// stack.pop;
+// console.log(stack.top);

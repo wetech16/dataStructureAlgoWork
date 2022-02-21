@@ -13,7 +13,7 @@
       if (arr[mid] >= arr[low]) low = mid + 1; // left part is sorted
     }
   }
-  let arr = [12, 14, 15, 4];
+  let arr = [12, 14, 4];
   let ans = rotateBinary(arr);
   console.log(ans);
 })();

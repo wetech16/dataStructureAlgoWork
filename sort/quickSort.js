@@ -75,9 +75,9 @@
 // quickSort(a, 0, a.length - 1);
 // console.log(a);
 
-let a = [4, 3, 1, 2];
-quickSort(a, 0, a.length - 1);
-console.log(a);
+// let a = [4, 3, 1, 2];
+// quickSort(a, 0, a.length - 1);
+// console.log(a);
 
 // function quickSort(arr, start, end) {
 //   if (start < end) {
@@ -118,3 +118,45 @@ console.log(a);
 //     arr[bItem] = temp;
 //   }
 // }
+
+let a = [4, 3, 1, 2, 5, 7];
+kElement(a, a.length - 1);
+console.log(a);
+
+function kElement(nums, k) {
+  k = nums.length - k;
+  let l = 0,
+    h = nums.length - 1;
+  while (l < h) {
+    let j = partition(nums, l, h);
+    if (j == k) {
+      break;
+    } else if (j < k) {
+      l = j + 1;
+    } else {
+      h = j - 1;
+    }
+  }
+  return nums[k];
+}
+
+function partition(a, l, h) {
+  let i = l,
+    j = h + 1;
+  while (true) {
+    while (a[++i] < a[l] && i < h);
+    while (a[--j] > a[l] && j > l);
+    if (i >= j) {
+      break;
+    }
+    swap(a, i, j);
+  }
+  swap(a, l, j);
+  return j;
+}
+
+function swap(a, i, j) {
+  let t = a[i];
+  a[i] = a[j];
+  a[j] = t;
+}

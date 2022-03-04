@@ -119,44 +119,76 @@
 //   }
 // }
 
-let a = [4, 3, 1, 2, 5, 7];
-kElement(a, a.length - 1);
+// let a = [4, 3, 1, 2, 5, 7];
+// kElement(a, a.length - 1);
+// console.log(a);
+
+// function kElement(nums, k) {
+//   k = nums.length - k;
+//   let l = 0,
+//     h = nums.length - 1;
+//   while (l < h) {
+//     let j = partition(nums, l, h);
+//     if (j == k) {
+//       break;
+//     } else if (j < k) {
+//       l = j + 1;
+//     } else {
+//       h = j - 1;
+//     }
+//   }
+//   return nums[k];
+// }
+
+// function partition(a, l, h) {
+//   let i = l,
+//     j = h + 1;
+//   while (true) {
+//     while (a[++i] < a[l] && i < h);
+//     while (a[--j] > a[l] && j > l);
+//     if (i >= j) {
+//       break;
+//     }
+//     swap(a, i, j);
+//   }
+//   swap(a, l, j);
+//   return j;
+// }
+
+// function swap(a, i, j) {
+//   let t = a[i];
+//   a[i] = a[j];
+//   a[j] = t;
+// }
+
+let a = [4, 3, 1, 2];
+quickSort(a, 0, a.length - 1);
 console.log(a);
 
-function kElement(nums, k) {
-  k = nums.length - k;
-  let l = 0,
-    h = nums.length - 1;
-  while (l < h) {
-    let j = partition(nums, l, h);
-    if (j == k) {
-      break;
-    } else if (j < k) {
-      l = j + 1;
-    } else {
-      h = j - 1;
+function quickSort(arr, start, end) {
+  if (start < end) {
+    let pIndex = partition(arr, start, end);
+    quickSort(arr, start, pIndex - 1);
+    quickSort(arr, pIndex + 1, end);
+  }
+}
+function partition(arr, start, end) {
+  let random = Math.floor(Math.random() * (end - start) + start);
+  swap(random, end);
+  let pIndex = start;
+  let value = arr[end];
+
+  for (let i = start; i < end; i++) {
+    if (arr[i] < value) {
+      swap(i, pIndex);
+      pIndex++;
     }
   }
-  return nums[k];
-}
-
-function partition(a, l, h) {
-  let i = l,
-    j = h + 1;
-  while (true) {
-    while (a[++i] < a[l] && i < h);
-    while (a[--j] > a[l] && j > l);
-    if (i >= j) {
-      break;
-    }
-    swap(a, i, j);
+  swap(pIndex, end);
+  return pIndex;
+  function swap(a, b) {
+    let t = arr[a];
+    arr[a] = arr[b];
+    arr[b] = t;
   }
-  swap(a, l, j);
-  return j;
-}
-
-function swap(a, i, j) {
-  let t = a[i];
-  a[i] = a[j];
-  a[j] = t;
 }

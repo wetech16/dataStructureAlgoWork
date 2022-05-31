@@ -15,16 +15,16 @@ let a = [1, 3, 5, 2, 4, 1];
 sortArray(a);
 console.log(a);
 
-// function sortArray(arr) {
-//   for (let i = 0; i < arr.length; i++) {
-//     let pMin = i;
-//     for (let j = i + 1; j < arr.length; j++) {
-//       if (arr[j] < arr[pMin]) {
-//         pMin = j;
-//       }
-//     }
-//     let temp = arr[pMin];
-//     arr[pMin] = arr[i];
-//     arr[i] = temp;
-//   }
-// }
+function sortArray(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let pMin = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[pMin]) {
+        pMin = j;
+      }
+    }
+    let temp = arr[i];
+    arr[i] = arr[pMin];
+    arr[pMin] = temp;
+  }
+}

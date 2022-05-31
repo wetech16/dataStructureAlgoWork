@@ -161,7 +161,7 @@
 //   a[j] = t;
 // }
 
-let a = [4, 3, 1, 2];
+let a = [4, 3, 1, 2, 6];
 quickSort(a, 0, a.length - 1);
 console.log(a);
 
@@ -172,12 +172,12 @@ function quickSort(arr, start, end) {
     quickSort(arr, pIndex + 1, end);
   }
 }
+
 function partition(arr, start, end) {
   let random = Math.floor(Math.random() * (end - start) + start);
   swap(random, end);
   let pIndex = start;
   let value = arr[end];
-
   for (let i = start; i < end; i++) {
     if (arr[i] < value) {
       swap(i, pIndex);
@@ -187,8 +187,8 @@ function partition(arr, start, end) {
   swap(pIndex, end);
   return pIndex;
   function swap(a, b) {
-    let t = arr[a];
+    let temp = arr[a];
     arr[a] = arr[b];
-    arr[b] = t;
+    arr[b] = temp;
   }
 }
